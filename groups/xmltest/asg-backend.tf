@@ -3,8 +3,8 @@ module "asg_backend" {
 
   name              = "${var.application}-bep"
   lc_name           = "${var.application}-bep-launchconfig"
-  image_id          = local.ec2_ami_id
-  instance_type     = var.ec2_backend_instance_type
+  image_id          = local.backend_ami_id
+  instance_type     = var.backend_instance_type
   security_groups   = [aws_security_group.backend.id]
   root_block_device = [
     {

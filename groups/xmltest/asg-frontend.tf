@@ -3,8 +3,8 @@ module "asg_frontend" {
 
   name              = "${var.application}-webserver"
   lc_name           = "${var.application}-fe-launchconfig"
-  image_id          = local.ec2_ami_id
-  instance_type     = var.ec2_frontend_instance_type
+  image_id          = local.frontend_ami_id
+  instance_type     = var.frontend_instance_type
   security_groups   = [aws_security_group.frontend.id]
   root_block_device = [
     {

@@ -6,12 +6,20 @@ data "aws_acm_certificate" "cert" {
   most_recent = true
 }
 
-data "aws_ami" "ami" {
-  count = var.ec2_ami_id == "" ? 1 : 0
+data "aws_ami" "backend_ami" {
+  count = var.backend_ami_id == "" ? 1 : 0
 
   most_recent = true
-  name_regex  = "^xmltest-ami-${var.ec2_ami_version_pattern}$"
-  owners      = [var.ec2_ami_owner_id]
+  name_regex  = "^xmltest-ami-${var.backend_ami_version_pattern}$"
+  owners      = [local.backend_ami_owner_id]
+}
+
+data "aws_ami" "frontend_ami" {
+  count = var.frontend_ami_id == "" ? 1 : 0
+
+  most_recent = true
+  name_regex  = "^xmltest-ami-${var.frontend_ami_version_pattern}$"
+  owners      = [local.frontend_ami_owner_id]
 }
 
 data "aws_ec2_managed_prefix_list" "admin" {
@@ -38,6 +46,10 @@ data "aws_subnets" "web" {
     name   = "tag:Name"
     values = [local.web_subnet_pattern]
   }
+}
+
+data "vault_generic_secret" "account_ids" {
+  path = "aws-accounts/account-ids"
 }
 
 data "vault_generic_secret" "account_kms" {

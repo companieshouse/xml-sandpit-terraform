@@ -53,31 +53,37 @@ variable "cloudwatch_frontend_logs" {
   )
 }
 
-variable "ec2_ami_id" {
+variable "backend_ami_id" {
   default     = ""
-  description = "The specific AMI ID to use when deploying EC2 instances. This will take precedence if provided"
+  description = "The specific AMI ID to use when deploying backend EC2 instances. This will take precedence if provided"
   type        = string
 }
 
-variable "ec2_ami_owner_id" {
-  default     = "self"
-  description = "The owner of the AMI, used when performing a lookup"
-  type        = string
-}
-
-variable "ec2_ami_version_pattern" {
+variable "backend_ami_version_pattern" {
   default     = "\\d.\\d.\\d"
   description = "The pattern with which to match xmltest AMIs. Used when no AMI ID is provided"
   type        = string
 }
 
-variable "ec2_backend_instance_type" {
+variable "backend_instance_type" {
   default     = "t2.small"
   description = "Non-ENA instance size to use for the backend instances"
   type        = string
 }
 
-variable "ec2_frontend_instance_type" {
+variable "frontend_ami_id" {
+  default     = ""
+  description = "The specific AMI ID to use when deploying frontend EC2 instances. This will take precedence if provided"
+  type        = string
+}
+
+variable "frontend_ami_version_pattern" {
+  default     = "\\d.\\d.\\d"
+  description = "The pattern with which to match xmltest AMIs. Used when no AMI ID is provided"
+  type        = string
+}
+
+variable "frontend_instance_type" {
   default     = "t2.small"
   description = "Non-ENA instance size to use for the frontend instances"
   type        = string
