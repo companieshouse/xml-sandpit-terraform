@@ -11,10 +11,10 @@ EOF
 cat <<EOF >>/root/cronfile
 ${BACKEND_CRON_ENTRIES}
 EOF
-crontab -u xmlsandpit /root/cronfile
+crontab -u xml-sandpit /root/cronfile
 
 #Set FESS_TOKEN
-echo "export FESS_TOKEN=${FESS_TOKEN}" >> /home/xmlsandpit/.bash_profile
+echo "export FESS_TOKEN=${FESS_TOKEN}" >> /home/xml-sandpit/.bash_profile
 
 #Create the TNSNames.ora file for Oracle
 /usr/local/bin/j2 -f json /usr/lib/oracle/11.2/client64/lib/tnsnames.j2 inputs.json > /usr/lib/oracle/11.2/client64/lib/tnsnames.ora
