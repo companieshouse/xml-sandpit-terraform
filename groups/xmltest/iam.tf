@@ -1,6 +1,5 @@
 module "frontend_profile" {
-#  source = "git@github.com:companieshouse/terraform-modules//aws/instance_profile?ref=tags/1.0.59"
-  source = "git@github.com:companieshouse/terraform-modules//aws/instance_profile?ref=feature/update-instance-profile"
+  source = "git@github.com:companieshouse/terraform-modules//aws/instance_profile?ref=tags/1.0.193"
 
   name       = "xmltest-frontend-profile"
   enable_ssm = true
@@ -42,8 +41,7 @@ module "frontend_profile" {
 }
 
 module "backend_profile" {
-#  source = "git@github.com:companieshouse/terraform-modules//aws/instance_profile?ref=tags/1.0.59"
-  source = "git@github.com:companieshouse/terraform-modules//aws/instance_profile?ref=feature/update-instance-profile"
+  source = "git@github.com:companieshouse/terraform-modules//aws/instance_profile?ref=tags/1.0.193"
 
   name       = "xmltest-backend-profile"
   enable_ssm = true
