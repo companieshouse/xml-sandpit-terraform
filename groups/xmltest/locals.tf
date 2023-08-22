@@ -113,4 +113,10 @@ locals {
     cw_agent_user              = "root"
   }
   frontend_userdata_inputs = data.vault_generic_secret.frontend.data_json
+  frontend_alb_sg_ids      = var.alb_enable_external_access ? {
+    external = aws_security_group.alb_external[0].id,
+    internal = aws_security_group.alb_internal.id
+  } : {
+    internal = aws_security_group.alb_internal.id
+  }
 }

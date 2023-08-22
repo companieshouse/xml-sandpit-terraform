@@ -73,3 +73,14 @@ resource "aws_security_group" "frontend" {
     }
   )
 }
+
+resource "aws_security_group_rule" "frontend_alb_ingress" {
+  for_each = local.frontend_alb_sg_ids
+
+  type                     = "ingress"
+  from_port                = var.alb_frontend_service_port
+  to_port                  = var.alb_frontend_service_port
+  protocol                 = "tcp"
+  source_security_group_id = each.value
+  security_group_id        = aws_security_group.frontend.id
+}
