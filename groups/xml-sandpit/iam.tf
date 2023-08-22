@@ -1,7 +1,7 @@
 module "frontend_profile" {
   source = "git@github.com:companieshouse/terraform-modules//aws/instance_profile?ref=tags/1.0.193"
 
-  name       = "xmltest-frontend-profile"
+  name       = "${var.application}-frontend-profile"
   enable_ssm = true
   cw_log_group_arns = length(local.cloudwatch_frontend_log_groups) > 0 ? flatten([
     formatlist(
@@ -43,7 +43,7 @@ module "frontend_profile" {
 module "backend_profile" {
   source = "git@github.com:companieshouse/terraform-modules//aws/instance_profile?ref=tags/1.0.193"
 
-  name       = "xmltest-backend-profile"
+  name       = "${var.application}-backend-profile"
   enable_ssm = true
   cw_log_group_arns = length(local.cloudwatch_backend_log_groups) > 0 ? flatten([
     formatlist(

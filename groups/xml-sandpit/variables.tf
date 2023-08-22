@@ -18,7 +18,7 @@ variable "aws_region" {
 }
 
 variable "application" {
-  default     = "xmltest"
+  default     = "xml-sandpit"
   description = "The name of the application being deployed"
   type        = string
 }
@@ -61,7 +61,7 @@ variable "backend_ami_id" {
 
 variable "backend_ami_version_pattern" {
   default     = "\\d.\\d.\\d"
-  description = "The pattern with which to match xmltest AMIs. Used when no AMI ID is provided"
+  description = "The pattern with which to match xml-sandpit AMIs. Used when no AMI ID is provided"
   type        = string
 }
 
@@ -79,7 +79,7 @@ variable "frontend_ami_id" {
 
 variable "frontend_ami_version_pattern" {
   default     = "\\d.\\d.\\d"
-  description = "The pattern with which to match xmltest AMIs. Used when no AMI ID is provided"
+  description = "The pattern with which to match xml-sandpit AMIs. Used when no AMI ID is provided"
   type        = string
 }
 

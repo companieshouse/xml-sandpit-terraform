@@ -7,14 +7,14 @@ cat <<EOF >>inputs.json
 ${BACKEND_INPUTS}
 EOF
 
-#Create cron file and set crontab for xmltest user:
+#Create cron file and set crontab
 cat <<EOF >>/root/cronfile
 ${BACKEND_CRON_ENTRIES}
 EOF
-crontab -u xmltest /root/cronfile
+crontab -u xmlsandpit /root/cronfile
 
 #Set FESS_TOKEN
-echo "export FESS_TOKEN=${FESS_TOKEN}" >> /home/xmltest/.bash_profile
+echo "export FESS_TOKEN=${FESS_TOKEN}" >> /home/xmlsandpit/.bash_profile
 
 #Create the TNSNames.ora file for Oracle
 /usr/local/bin/j2 -f json /usr/lib/oracle/11.2/client64/lib/tnsnames.j2 inputs.json > /usr/lib/oracle/11.2/client64/lib/tnsnames.ora

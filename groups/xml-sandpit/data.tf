@@ -10,7 +10,7 @@ data "aws_ami" "backend_ami" {
   count = var.backend_ami_id == "" ? 1 : 0
 
   most_recent = true
-  name_regex  = "^xmltest-ami-${var.backend_ami_version_pattern}$"
+  name_regex  = "^xml-sandpit-ami-${var.backend_ami_version_pattern}$"
   owners      = [local.backend_ami_owner_id]
 }
 
@@ -18,7 +18,7 @@ data "aws_ami" "frontend_ami" {
   count = var.frontend_ami_id == "" ? 1 : 0
 
   most_recent = true
-  name_regex  = "^xmltest-ami-${var.frontend_ami_version_pattern}$"
+  name_regex  = "^xml-sandpit-ami-${var.frontend_ami_version_pattern}$"
   owners      = [local.frontend_ami_owner_id]
 }
 
