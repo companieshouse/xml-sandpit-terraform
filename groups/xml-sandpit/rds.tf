@@ -42,27 +42,22 @@ module "rds" {
   performance_insights_kms_key_id       = local.rds_kms_key_arn
   performance_insights_retention_period = 7
 
-  # RDS Security Group
-  vpc_security_group_ids = [
+  subnet_ids                        = data.aws_subnets.rds.ids
+  vpc_security_group_ids            = [
     aws_security_group.rds.id,
     data.aws_security_group.rds_shared.id
   ]
 
-  # DB subnet group
-  subnet_ids = data.aws_subnets.rds.ids
-
-  # DB Parameter group
-  family = join("-", ["oracle-se2", var.rds_major_engine_version])
-
-  parameters = var.rds_parameter_group_settings
-
-  options = concat([
-    {
+  family                            = join("-", ["oracle-se2", var.rds_major_engine_version])
+  parameters                        = var.rds_parameter_group_settings
+  options                           = concat(
+    [{
       option_name                    = "OEM"
       port                           = "5500"
       vpc_security_group_memberships = [aws_security_group.rds.id]
-    }
-  ], var.rds_option_group_settings)
+    }],
+    var.rds_option_group_settings
+  )
 
   timeouts = {
     "create" : "80m",

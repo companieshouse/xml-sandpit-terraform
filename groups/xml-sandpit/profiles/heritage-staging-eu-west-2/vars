@@ -83,7 +83,7 @@ cloudwatch_frontend_logs = {
 
 # RDS Instance settings
 rds_instance_class          = "db.t3.medium"
-rds_allocated_storage       = 30
+rds_allocated_storage       = 50
 rds_backup_retention_period = 2
 rds_multi_az                = false
 rds_maintenance_window      = "sun:12:00-sun:15:00"
