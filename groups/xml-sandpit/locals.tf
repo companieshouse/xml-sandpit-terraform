@@ -124,10 +124,15 @@ locals {
   }
   frontend_userdata_inputs = data.vault_generic_secret.frontend.data_json
   frontend_alb_sg_ids      = var.alb_enable_external_access ? {
-    external = aws_security_group.alb_external[0].id,
+    external = aws_security_group.alb_external[0].id
     internal = aws_security_group.alb_internal.id
   } : {
     internal = aws_security_group.alb_internal.id
+  }
+
+  rds_instances_ingress_map = {
+    backend = aws_security_group.backend.id
+    frontend = aws_security_group.frontend.id
   }
 
   # Set gp3 storage performance baselines for Oracle RDS allocations

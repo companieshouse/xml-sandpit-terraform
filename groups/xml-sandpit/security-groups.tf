@@ -16,6 +16,7 @@ resource "aws_security_group" "alb_external" {
 resource "aws_security_group_rule" "alb_external_ingress" {
   for_each = var.alb_enable_external_access ? local.alb_frontend_ingress_rules : {}
 
+  description       = "External ${each.key} access"
   type              = "ingress"
   from_port         = each.value["from_port"]
   to_port           = each.value["to_port"]
@@ -40,6 +41,7 @@ resource "aws_security_group" "alb_internal" {
 resource "aws_security_group_rule" "alb_internal_ingress" {
   for_each = local.alb_frontend_ingress_rules
 
+  description       = "Internal ${each.key} access"
   type              = "ingress"
   from_port         = each.value["from_port"]
   to_port           = each.value["to_port"]
@@ -77,6 +79,7 @@ resource "aws_security_group" "frontend" {
 resource "aws_security_group_rule" "frontend_alb_ingress" {
   for_each = local.frontend_alb_sg_ids
 
+  description              = "Allow traffic from ${each.key} ALB"
   type                     = "ingress"
   from_port                = var.alb_frontend_service_port
   to_port                  = var.alb_frontend_service_port
@@ -96,4 +99,16 @@ resource "aws_security_group" "rds" {
       ServiceTeam = "${upper(var.application)}-DBA-Support"
     }
   )
+}
+
+resource "aws_security_group_rule" "rds_ingress_instances" {
+  for_each = local.rds_instances_ingress_map
+
+  description              = "Allow traffic from ${each.key} instances"
+  type                     = "ingress"
+  from_port                = 1521
+  to_port                  = 1521
+  protocol                 = "tcp"
+  security_group_id        = aws_security_group.rds.id
+  source_security_group_id = each.value
 }
