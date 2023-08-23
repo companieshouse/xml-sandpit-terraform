@@ -1,7 +1,7 @@
-aws_account       = "heritage-development"
-aws_account_short = "hdev"
+aws_account       = "heritage-staging"
+aws_account_short = "hstg"
 aws_region        = "eu-west-2"
-environment       = "dev"
+environment       = "stg"
 
 asg_backend_desired_capacity          = 1
 asg_backend_max_size                  = 1
