@@ -235,6 +235,12 @@ variable "rds_backup_window" {
   type        = string
 }
 
+variable "rds_db_name" {
+  default     = "XMLSNDPT"
+  description = "The name of the database to be created within the RDS, also used as the Oracle SID"
+  type        = string
+}
+
 variable "rds_engine_version" {
   description = "The Oracle engine version to install. When set to the same value as rds_major_engine_version will disable engine version pinning."
   type        = string

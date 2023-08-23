@@ -22,7 +22,7 @@ module "rds" {
   storage_encrypted                 = true
   kms_key_id                        = local.rds_kms_key_arn
 
-  db_name                           = upper(var.application)
+  db_name                           = var.rds_db_name
   username                          = local.rds_username
   password                          = local.rds_password
   port                              = "1521"
