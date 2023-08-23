@@ -236,7 +236,7 @@ variable "rds_backup_window" {
 }
 
 variable "rds_db_name" {
-  default     = "XMLSNDPT"
+  default     = "XMLSP"
   description = "The name of the database to be created within the RDS, also used as the Oracle SID"
   type        = string
 }
