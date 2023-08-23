@@ -29,6 +29,11 @@ locals {
   fess_secrets          = jsondecode(data.vault_generic_secret.fess.data_json)
   fess_token            = local.fess_secrets["fess_token"]
 
+  rds_secrets           = jsondecode(data.vault_generic_secret.rds.data_json)
+  rds_username          = local.rds_secrets["admin_username"]
+  rds_password          = local.rds_secrets["admin_password"]
+  rds_subnet_pattern    = local.rds_secrets["subnet_pattern"]
+
   security_kms_secrets  = jsondecode(data.vault_generic_secret.security_kms.data_json)
   ssm_kms_key_arn       = local.security_kms_secrets["session-manager-kms-key-arn"]
 
@@ -124,4 +129,8 @@ locals {
   } : {
     internal = aws_security_group.alb_internal.id
   }
+
+  # Set gp3 storage performance baselines for Oracle RDS allocations
+  rds_storage_iops       = var.rds_storage_type == "gp3" && var.rds_allocated_storage >= 200 ? 12000 : null
+  rds_storage_throughput = var.rds_storage_type == "gp3" && var.rds_allocated_storage >= 200 ? 500 : null
 }

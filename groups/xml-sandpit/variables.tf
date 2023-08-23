@@ -213,3 +213,108 @@ variable "nfs_server_address" {
 #-------------------------------------------------------------------------------
 # RDS Variables
 #-------------------------------------------------------------------------------
+variable "rds_allocated_storage" {
+  description = "The amount of storage allocated for the RDS instance in GiB"
+  type        = number
+}
+
+variable "rds_auto_minor_version_upgrade" {
+  default     = false
+  description = "Defines whether minor version upgrades are automatically applied during maintenance windows"
+  type        = bool
+}
+
+variable "rds_backup_retention_period" {
+  default     = 7
+  description = "The number of days backups are retained before being rotated"
+  type        = number
+}
+
+variable "rds_backup_window" {
+  description = "The UTC time range during which automated backups are created. Cannot overlap with rds_maintenance_window"
+  type        = string
+}
+
+variable "rds_engine_version" {
+  description = "The Oracle engine version to install. When set to the same value as rds_major_engine_version will disable engine version pinning."
+  type        = string
+}
+
+variable "rds_instance_class" {
+  description = "The instance type to use for the RDS deployment"
+  type        = string
+}
+
+variable "rds_license_model" {
+  default     = "license-included"
+  description = "The Oracle licensing model to use"
+  type        = string
+}
+
+variable "rds_log_exports" {
+  default     = [
+    "alert",
+    "audit",
+    "listener",
+    "trace"
+  ]
+  description = "The RDS logs to be exported to CloudWatch"
+  type        = list(string)
+}
+
+variable "rds_maintenance_window" {
+  description = "The UTC time range during which a maintenance window is established. Cannot overlap with rds_backup_window"
+  type        = string
+}
+
+variable "rds_major_engine_version" {
+  description = "The Oracle engine major version to install"
+  type        = string
+}
+
+variable "rds_multi_az" {
+  default     = false
+  description = "Defines whether the RDS instance is configured for Multi-AZ"
+  type        = bool
+}
+
+variable "rds_option_group_settings" {
+  description = "A list of options that will be set in the RDS instance option group"
+  type        = any
+}
+
+variable "rds_parameter_group_settings" {
+  description = "A list of parameters that will be set in the RDS Parameter Group"
+  type        = any
+}
+
+variable "rds_performance_insights_enabled" {
+  default     = false
+  description = "Defines whether Performance Insights are enabled"
+  type        = bool
+}
+
+variable "rds_schedule_enable" {
+  default     = false
+  description = "Defines whether the startup and shutdown schedule is enabled"
+  type        = bool
+}
+
+variable "rds_start_schedule" {
+  default     = ""
+  description = "Defines the UTC schedule used to start the RDS instance, when rds_schedule_enable is `true`"
+  type        = string
+}
+
+variable "rds_stop_schedule" {
+  default     = ""
+  description = "Defines the UTC schedule used to stop the RDS instance, when rds_schedule_enable is `true`"
+  type        = string
+}
+
+variable "rds_storage_type" {
+  default     = "gp3"
+  description = "The type of storage used for the RDS instance"
+  type        = string
+}
+

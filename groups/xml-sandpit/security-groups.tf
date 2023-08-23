@@ -84,3 +84,16 @@ resource "aws_security_group_rule" "frontend_alb_ingress" {
   source_security_group_id = each.value
   security_group_id        = aws_security_group.frontend.id
 }
+
+resource "aws_security_group" "rds" {
+  name_prefix = "sgr-${var.application}-rds-"
+  description = "Security group for the RDS instance"
+  vpc_id      = local.vpc_id
+
+  tags = merge(
+    local.default_tags,
+    {
+      ServiceTeam = "${upper(var.application)}-DBA-Support"
+    }
+  )
+}
