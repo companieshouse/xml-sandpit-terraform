@@ -1,5 +1,5 @@
 module "frontend_profile" {
-  source = "git@github.com:companieshouse/terraform-modules//aws/instance_profile?ref=tags/1.0.193"
+  source = "git@github.com:companieshouse/terraform-modules//aws/instance_profile?ref=tags/1.0.194"
 
   name       = "${var.application}-frontend-profile"
   enable_ssm = true

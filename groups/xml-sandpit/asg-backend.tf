@@ -1,5 +1,5 @@
 module "asg_backend" {
-  source = "git@github.com:companieshouse/terraform-modules//aws/terraform-aws-autoscaling?ref=tags/1.0.36"
+  source = "git@github.com:companieshouse/terraform-modules//aws/terraform-aws-autoscaling?ref=tags/1.0.194"
 
   name              = "${var.application}-bep"
   lc_name           = "${var.application}-bep-launchconfig"
@@ -25,7 +25,6 @@ module "asg_backend" {
   force_delete                   = true
   enable_instance_refresh        = true
   refresh_min_healthy_percentage = 50
-  refresh_triggers               = ["launch_configuration"]
   key_name                       = aws_key_pair.ec2.key_name
   termination_policies           = ["OldestLaunchConfiguration"]
   iam_instance_profile           = module.backend_profile.aws_iam_instance_profile.name
