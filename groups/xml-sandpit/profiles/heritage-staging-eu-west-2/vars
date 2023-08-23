@@ -1,7 +1,7 @@
 aws_account       = "heritage-staging"
 aws_account_short = "hstg"
 aws_region        = "eu-west-2"
-environment       = "stg"
+environment       = "staging"
 
 asg_backend_desired_capacity          = 1
 asg_backend_max_size                  = 1
@@ -193,3 +193,7 @@ rds_option_group_settings = [
   }
 ]
 
+
+rds_alarm_actions_enabled  = false
+rds_alarm_topic_name       = ""
+rds_alarm_topic_name_ooh   = ""
