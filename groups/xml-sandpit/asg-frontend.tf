@@ -1,5 +1,5 @@
 module "asg_frontend" {
-  source = "git@github.com:companieshouse/terraform-modules//aws/terraform-aws-autoscaling?ref=tags/1.0.196"
+  source = "git@github.com:companieshouse/terraform-modules//aws/terraform-aws-autoscaling?ref=tags/1.0.197"
 
   name              = "${var.application}-webserver"
   lc_name           = "${var.application}-fe-launchconfig"

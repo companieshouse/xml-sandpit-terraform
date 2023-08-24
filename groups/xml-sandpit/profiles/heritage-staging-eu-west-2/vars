@@ -9,13 +9,13 @@ environment       = "staging"
 #-------------------------------------------------------------------------------
 # Frontend & Backend Variables
 #-------------------------------------------------------------------------------
-asg_backend_desired_capacity          = 1
-asg_backend_max_size                  = 1
-asg_backend_min_size                  = 1
+asg_backend_desired_capacity          = 0
+asg_backend_max_size                  = 0
+asg_backend_min_size                  = 0
 asg_backend_enable_shutdown_schedule  = true
-asg_frontend_desired_capacity         = 1
-asg_frontend_max_size                 = 1
-asg_frontend_min_size                 = 1
+asg_frontend_desired_capacity         = 0
+asg_frontend_max_size                 = 0
+asg_frontend_min_size                 = 0
 asg_frontend_enable_shutdown_schedule = true
 
 cloudwatch_backend_logs = {
@@ -197,6 +197,11 @@ rds_option_group_settings = [
       },
     ]
   }
+]
+
+rds_ingress_groups = [
+  "xml-frontend-tuxedo-staging*",
+  "sgr-admin-sites-asg-*",
 ]
 
 rds_alarm_actions_enabled  = false
