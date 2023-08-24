@@ -74,7 +74,7 @@ module "rds" {
 }
 
 module "rds_start_stop_schedule" {
-  source = "git@github.com:companieshouse/terraform-modules//aws/rds_start_stop_schedule?ref=tags/1.0.195"
+  source = "git@github.com:companieshouse/terraform-modules//aws/rds_start_stop_schedule?ref=tags/1.0.196"
 
   rds_schedule_enable = var.rds_schedule_enable
   rds_instance_id     = module.rds.db_instance_identifier
@@ -87,7 +87,7 @@ module "rds_start_stop_schedule" {
 }
 
 module "rds_cloudwatch_alarms" {
-  source = "git@github.com:companieshouse/terraform-modules//aws/oracledb_cloudwatch_alarms?ref=tags/1.0.195"
+  source = "git@github.com:companieshouse/terraform-modules//aws/oracledb_cloudwatch_alarms?ref=tags/1.0.196"
 
   db_instance_id         = module.rds.db_instance_identifier
   db_instance_shortname  = var.rds_db_name

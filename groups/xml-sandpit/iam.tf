@@ -1,5 +1,5 @@
 module "frontend_profile" {
-  source = "git@github.com:companieshouse/terraform-modules//aws/instance_profile?ref=tags/1.0.195"
+  source = "git@github.com:companieshouse/terraform-modules//aws/instance_profile?ref=tags/1.0.196"
 
   name       = "${var.application}-frontend-profile"
   enable_ssm = true
@@ -41,7 +41,7 @@ module "frontend_profile" {
 }
 
 module "backend_profile" {
-  source = "git@github.com:companieshouse/terraform-modules//aws/instance_profile?ref=tags/1.0.195"
+  source = "git@github.com:companieshouse/terraform-modules//aws/instance_profile?ref=tags/1.0.196"
 
   name       = "${var.application}-backend-profile"
   enable_ssm = true

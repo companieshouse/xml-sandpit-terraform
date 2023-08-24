@@ -1,5 +1,5 @@
 module "asg_backend" {
-  source = "git@github.com:companieshouse/terraform-modules//aws/terraform-aws-autoscaling?ref=tags/1.0.195"
+  source = "git@github.com:companieshouse/terraform-modules//aws/terraform-aws-autoscaling?ref=tags/1.0.196"
 
   name              = "${var.application}-bep"
   lc_name           = "${var.application}-bep-launchconfig"
