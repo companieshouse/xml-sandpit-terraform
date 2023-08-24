@@ -26,6 +26,26 @@ data "aws_ec2_managed_prefix_list" "admin" {
   name = "administration-cidr-ranges"
 }
 
+data "aws_iam_role" "rds_enhanced_monitoring" {
+  name = "irol-rds-enhanced-monitoring"
+}
+
+data "aws_security_group" "rds_shared" {
+  filter {
+    name   = "group-name"
+    values = ["sgr-rds-shared-001*"]
+  }
+}
+
+data "aws_security_group" "rds_ingress_groups" {
+  count = length(var.rds_ingress_groups)
+
+  filter {
+    name   = "group-name"
+    values = [var.rds_ingress_groups[count.index]]
+  }
+}
+
 data "aws_subnets" "app" {
   filter {
     name   = "vpc-id"
@@ -45,6 +65,17 @@ data "aws_subnets" "web" {
   filter {
     name   = "tag:Name"
     values = [local.web_subnet_pattern]
+  }
+}
+
+data "aws_subnets" "rds" {
+  filter {
+    name   = "vpc-id"
+    values = [local.vpc_id]
+  }
+  filter {
+    name   = "tag:Name"
+    values = [local.rds_subnet_pattern]
   }
 }
 
@@ -74,6 +105,10 @@ data "vault_generic_secret" "fess" {
 
 data "vault_generic_secret" "frontend" {
   path = "applications/${var.aws_account}-${var.aws_region}/${var.application}/frontend"
+}
+
+data "vault_generic_secret" "rds" {
+  path = "applications/${var.aws_account}-${var.aws_region}/${var.application}/rds"
 }
 
 data "vault_generic_secret" "security_kms" {
