@@ -130,7 +130,7 @@ locals {
     internal = aws_security_group.alb_internal.id
   }
 
-  rds_ingress_instance_sg_ids = {
+  rds_ingress_instance_sg_map = {
     backend = aws_security_group.backend.id
     frontend = aws_security_group.frontend.id
   }

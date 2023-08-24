@@ -101,8 +101,28 @@ resource "aws_security_group" "rds" {
   )
 }
 
+resource "aws_security_group_rule" "rds_ingress_admin_oracle" {
+  description       = "Oracle DB administrative access"
+  type              = "ingress"
+  from_port         = 1521
+  to_port           = 1521
+  protocol          = "tcp"
+  security_group_id = aws_security_group.rds.id
+  prefix_list_ids   = [data.aws_ec2_managed_prefix_list.admin.id]
+}
+
+resource "aws_security_group_rule" "rds_ingress_admin_oem" {
+  description       = "Oracle Enterprise Manager administrative access"
+  type              = "ingress"
+  from_port         = 5500
+  to_port           = 5500
+  protocol          = "tcp"
+  security_group_id = aws_security_group.rds.id
+  prefix_list_ids   = [data.aws_ec2_managed_prefix_list.admin.id]
+}
+
 resource "aws_security_group_rule" "rds_ingress_instances" {
-  for_each = local.rds_ingress_instance_sg_ids
+  for_each = local.rds_ingress_instance_sg_map
 
   description              = "Allow traffic from ${each.key} instances"
   type                     = "ingress"
