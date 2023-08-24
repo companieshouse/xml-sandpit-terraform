@@ -25,7 +25,6 @@ module "asg_backend" {
   force_delete                   = true
   enable_instance_refresh        = true
   refresh_min_healthy_percentage = 50
-  refresh_triggers               = ["launch_configuration"]
   key_name                       = aws_key_pair.ec2.key_name
   termination_policies           = ["OldestLaunchConfiguration"]
   iam_instance_profile           = module.backend_profile.aws_iam_instance_profile.name
