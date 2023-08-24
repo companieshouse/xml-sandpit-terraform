@@ -38,7 +38,7 @@ locals {
   ssm_kms_key_arn       = local.security_kms_secrets["session-manager-kms-key-arn"]
 
   security_s3_secrets   = jsondecode(data.vault_generic_secret.security_s3.data_json)
-  alb_logs_bucket_name  = local.security_s3_secrets["elb-access-logs-bucket-arn"]
+  alb_logs_bucket_name  = local.security_s3_secrets["elb-access-logs-bucket-name"]
   alb_logs_prefix       = "elb-access-logs"
   ssm_s3_bucket_arn     = local.security_s3_secrets["session-manager-bucket-arn"]
   ssm_s3_bucket_name    = local.security_s3_secrets["session-manager-bucket-name"]
