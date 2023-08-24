@@ -246,6 +246,12 @@ variable "rds_engine_version" {
   type        = string
 }
 
+variable "rds_ingress_groups" {
+  default     = []
+  description = "A list of security group name patterns that will be used to define RDS instance ingress rules"
+  type        = list(string)
+}
+
 variable "rds_instance_class" {
   description = "The instance type to use for the RDS deployment"
   type        = string
@@ -324,3 +330,20 @@ variable "rds_storage_type" {
   type        = string
 }
 
+#-------------------------------------------------------------------------------
+# RDS CloudWatch Alarm Variables
+#-------------------------------------------------------------------------------
+variable "rds_alarm_actions_enabled" {
+  type        = bool
+  description = "Defines whether SNS-based alarm actions should be enabled (true) or not (false) for alarms"
+}
+
+variable "rds_alarm_topic_name" {
+  type        = string
+  description = "The name of the SNS topic to use for in-hours alarm notifications and clear notifications"
+}
+
+variable "rds_alarm_topic_name_ooh" {
+  type        = string
+  description = "The name of the SNS topic to use for OOH alarm notifications"
+}

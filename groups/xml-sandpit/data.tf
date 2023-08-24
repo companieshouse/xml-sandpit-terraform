@@ -37,6 +37,15 @@ data "aws_security_group" "rds_shared" {
   }
 }
 
+data "aws_security_group" "rds_ingress_groups" {
+  count = length(var.rds_ingress_groups)
+
+  filter {
+    name   = "group-name"
+    values = [var.rds_ingress_groups[count.index]]
+  }
+}
+
 data "aws_subnets" "app" {
   filter {
     name   = "vpc-id"

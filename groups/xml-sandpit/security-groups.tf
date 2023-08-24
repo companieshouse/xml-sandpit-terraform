@@ -102,7 +102,7 @@ resource "aws_security_group" "rds" {
 }
 
 resource "aws_security_group_rule" "rds_ingress_instances" {
-  for_each = local.rds_instances_ingress_map
+  for_each = local.rds_ingress_instance_sg_ids
 
   description              = "Allow traffic from ${each.key} instances"
   type                     = "ingress"
@@ -111,4 +111,16 @@ resource "aws_security_group_rule" "rds_ingress_instances" {
   protocol                 = "tcp"
   security_group_id        = aws_security_group.rds.id
   source_security_group_id = each.value
+}
+
+resource "aws_security_group_rule" "rds_ingress_services" {
+  for_each = local.rds_ingress_services_sg_map
+
+  description              = "Allow traffic from ${each.value["name"]}"
+  type                     = "ingress"
+  from_port                = 1521
+  to_port                  = 1521
+  protocol                 = "tcp"
+  security_group_id        = aws_security_group.rds.id
+  source_security_group_id = each.key
 }

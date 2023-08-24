@@ -130,10 +130,17 @@ locals {
     internal = aws_security_group.alb_internal.id
   }
 
-  rds_instances_ingress_map = {
+  rds_ingress_instance_sg_ids = {
     backend = aws_security_group.backend.id
     frontend = aws_security_group.frontend.id
   }
+
+  rds_ingress_services_sg_map = length(var.rds_ingress_groups) > 0 ? {
+    for sg_data in data.aws_security_group.rds_ingress_groups : sg_data.id => {
+      name = sg_data.tags.Name
+    }
+  } : {}
+
 
   # Set gp3 storage performance baselines for Oracle RDS allocations
   rds_storage_iops       = var.rds_storage_type == "gp3" && var.rds_allocated_storage >= 200 ? 12000 : null
