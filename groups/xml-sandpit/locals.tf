@@ -145,4 +145,6 @@ locals {
   # Set gp3 storage performance baselines for Oracle RDS allocations
   rds_storage_iops       = var.rds_storage_type == "gp3" && var.rds_allocated_storage >= 200 ? 12000 : null
   rds_storage_throughput = var.rds_storage_type == "gp3" && var.rds_allocated_storage >= 200 ? 500 : null
+
+  route53_domain_name    = format("%s.%s.aws.internal", split("-", var.aws_account)[1], split("-", var.aws_account)[0])
 }
