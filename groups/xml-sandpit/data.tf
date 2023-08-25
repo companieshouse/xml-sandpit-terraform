@@ -30,6 +30,11 @@ data "aws_iam_role" "rds_enhanced_monitoring" {
   name = "irol-rds-enhanced-monitoring"
 }
 
+data "aws_route53_zone" "private" {
+  name         = local.route53_domain_name
+  private_zone = true
+}
+
 data "aws_security_group" "rds_shared" {
   filter {
     name   = "group-name"
