@@ -66,7 +66,7 @@ variable "backend_ami_version_pattern" {
 }
 
 variable "backend_instance_type" {
-  default     = "t2.small"
+  default     = "t2.medium"
   description = "Non-ENA instance size to use for the backend instances"
   type        = string
 }
@@ -84,7 +84,7 @@ variable "frontend_ami_version_pattern" {
 }
 
 variable "frontend_instance_type" {
-  default     = "t2.small"
+  default     = "t2.medium"
   description = "Non-ENA instance size to use for the frontend instances"
   type        = string
 }
