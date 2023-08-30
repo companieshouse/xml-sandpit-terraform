@@ -2,6 +2,11 @@
 # Redirect the user-data output to the console logs
 exec > >(tee /var/log/user-data.log|logger -t user-data -s 2>/dev/console) 2>&1
 
+# Ensure ClamAV databases are cleaned and updated
+/sbin/service clamd stop
+/bin/rm -f /var/lib/clamav/*
+/usr/bin/freshclam
+
 #Create key:value variable
 cat <<EOF >>inputs.json
 ${FRONTEND_INPUTS}
