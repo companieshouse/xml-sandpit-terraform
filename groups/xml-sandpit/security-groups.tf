@@ -13,6 +13,18 @@ resource "aws_security_group" "alb_external" {
   )
 }
 
+resource "aws_security_group_rule" "alb_external_egress" {
+  count = var.alb_enable_external_access ? 1 : 0
+
+  description       = "Allow egress traffic to all"
+  type              = "egress"
+  from_port         = 0
+  to_port           = 0
+  protocol          = "-1"
+  cidr_blocks       = ["0.0.0.0/0"]
+  security_group_id = aws_security_group.alb_external[0].id
+}
+
 resource "aws_security_group_rule" "alb_external_ingress" {
   for_each = var.alb_enable_external_access ? local.alb_frontend_ingress_rules : {}
 
@@ -36,6 +48,16 @@ resource "aws_security_group" "alb_internal" {
       ServiceTeam = "${upper(var.application)}-FE-Support"
     }
   )
+}
+
+resource "aws_security_group_rule" "alb_internal_egress" {
+  description       = "Allow egress traffic to all"
+  type              = "egress"
+  from_port         = 0
+  to_port           = 0
+  protocol          = "-1"
+  cidr_blocks       = ["0.0.0.0/0"]
+  security_group_id = aws_security_group.alb_internal.id
 }
 
 resource "aws_security_group_rule" "alb_internal_ingress" {
@@ -63,6 +85,16 @@ resource "aws_security_group" "backend" {
   )
 }
 
+resource "aws_security_group_rule" "backend_egress" {
+  description       = "Allow egress traffic to all"
+  type              = "egress"
+  from_port         = 0
+  to_port           = 0
+  protocol          = "-1"
+  cidr_blocks       = ["0.0.0.0/0"]
+  security_group_id = aws_security_group.backend.id
+}
+
 resource "aws_security_group" "frontend" {
   name_prefix = "sgr-${var.application}-ec2-fe-"
   description = "Security group for the frontend EC2 instances"
@@ -74,6 +106,16 @@ resource "aws_security_group" "frontend" {
       ServiceTeam = "${upper(var.application)}-FE-Support"
     }
   )
+}
+
+resource "aws_security_group_rule" "frontend_egress" {
+  description       = "Allow egress traffic to all"
+  type              = "egress"
+  from_port         = 0
+  to_port           = 0
+  protocol          = "-1"
+  cidr_blocks       = ["0.0.0.0/0"]
+  security_group_id = aws_security_group.frontend.id
 }
 
 resource "aws_security_group_rule" "frontend_alb_ingress" {
@@ -99,6 +141,16 @@ resource "aws_security_group" "rds" {
       ServiceTeam = "${upper(var.application)}-DBA-Support"
     }
   )
+}
+
+resource "aws_security_group_rule" "rds_egress" {
+  description       = "Allow egress traffic to all"
+  type              = "egress"
+  from_port         = 0
+  to_port           = 0
+  protocol          = "-1"
+  cidr_blocks       = ["0.0.0.0/0"]
+  security_group_id = aws_security_group.rds.id
 }
 
 resource "aws_security_group_rule" "rds_ingress_admin_oracle" {

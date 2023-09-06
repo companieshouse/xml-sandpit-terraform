@@ -1,6 +1,6 @@
 resource "aws_route53_record" "frontend_internal" {
   zone_id = data.aws_route53_zone.private.zone_id
-  name    = var.application
+  name    = "xmlgw-sandpit"
   type    = "A"
 
   alias {

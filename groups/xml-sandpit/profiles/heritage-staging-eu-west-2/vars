@@ -13,9 +13,9 @@ asg_backend_desired_capacity          = 0
 asg_backend_max_size                  = 0
 asg_backend_min_size                  = 0
 asg_backend_enable_shutdown_schedule  = true
-asg_frontend_desired_capacity         = 0
-asg_frontend_max_size                 = 0
-asg_frontend_min_size                 = 0
+asg_frontend_desired_capacity         = 1
+asg_frontend_max_size                 = 1
+asg_frontend_min_size                 = 1
 asg_frontend_enable_shutdown_schedule = true
 
 cloudwatch_backend_logs = {
