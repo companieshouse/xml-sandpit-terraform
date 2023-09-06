@@ -25,6 +25,7 @@ module "rds" {
   db_name                           = var.rds_db_name
   username                          = local.rds_username
   password                          = local.rds_password
+  manage_master_user_password       = false
   port                              = "1521"
 
   backup_window                     = var.rds_backup_window
