@@ -20,7 +20,7 @@ module "asg_frontend" {
   min_size                       = var.asg_frontend_min_size
   max_size                       = var.asg_frontend_max_size
   desired_capacity               = var.asg_frontend_desired_capacity
-  health_check_grace_period      = 300
+  health_check_grace_period      = 420
   wait_for_capacity_timeout      = 0
   force_delete                   = true
   enable_instance_refresh        = true
