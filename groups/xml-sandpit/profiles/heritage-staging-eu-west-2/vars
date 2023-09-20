@@ -202,6 +202,7 @@ rds_option_group_settings = [
 rds_ingress_groups = [
   "xml-frontend-tuxedo-staging*",
   "sgr-admin-sites-asg-*",
+  "sgr-chips-oltp-db-ec2*"
 ]
 
 rds_alarm_actions_enabled  = false
