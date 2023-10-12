@@ -21,7 +21,8 @@ locals {
 
   frontend_secrets      = jsondecode(data.vault_generic_secret.frontend.data_json)
   acm_cert_domain       = "*.${local.frontend_secrets["domain_name"]}"
-  web_subnet_pattern    = local.frontend_secrets["subnet_pattern"]
+  public_subnet_pattern = local.frontend_secrets["public_subnet_pattern"]
+  web_subnet_pattern    = local.frontend_secrets["web_subnet_pattern"]
 
   ec2_secrets           = jsondecode(data.vault_generic_secret.ec2.data_json)
   public_key            = local.ec2_secrets["public_key"]
