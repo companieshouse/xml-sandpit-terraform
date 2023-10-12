@@ -5,7 +5,7 @@ resource "aws_lb" "alb_external" {
   internal                   = false
   load_balancer_type         = "application"
   security_groups            = [aws_security_group.alb_external[0].id]
-  subnets                    = data.aws_subnets.web.ids
+  subnets                    = data.aws_subnets.public.ids
 
   enable_deletion_protection = true
 
