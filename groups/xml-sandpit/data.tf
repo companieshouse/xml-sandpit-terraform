@@ -73,6 +73,17 @@ data "aws_subnets" "web" {
   }
 }
 
+data "aws_subnets" "public" {
+  filter {
+    name   = "vpc-id"
+    values = [local.vpc_id]
+  }
+  filter {
+    name   = "tag:Name"
+    values = [local.public_subnet_pattern]
+  }
+}
+
 data "aws_subnets" "rds" {
   filter {
     name   = "vpc-id"
