@@ -21,7 +21,7 @@ asg_backend_enable_shutdown_schedule  = true
 asg_frontend_desired_capacity         = 1
 asg_frontend_max_size                 = 1
 asg_frontend_min_size                 = 1
-asg_frontend_enable_shutdown_schedule = true
+asg_frontend_enable_shutdown_schedule = false
 
 cloudwatch_backend_logs = {
   "audit.log" = {
