@@ -34,7 +34,9 @@ module "asg_frontend" {
   tags_as_map = merge(
     local.default_tags,
     {
-      ServiceTeam = "${upper(var.application)}-FE-Support"
+      ServiceTeam               = "${upper(var.application)}-FE-Support"
+      tenable-cwp-scan-disabled = "true"
+      Repository                = "ewf-terraform"
     }
   )
 }
