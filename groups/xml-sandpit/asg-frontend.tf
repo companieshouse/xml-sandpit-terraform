@@ -36,7 +36,7 @@ module "asg_frontend" {
     {
       ServiceTeam               = "${upper(var.application)}-FE-Support"
       tenable-cwp-scan-disabled = "true"
-      Repository                = "ewf-terraform"
+      Repository                = "xml-sandpit-terraform"
     }
   )
 }
